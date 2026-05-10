@@ -32,8 +32,8 @@ export interface SiteConfig {
   labels: {
     hero: string;
     about: string;
+    strengths: string;
     services: string;
-    works: string;
     blog: string;
     contact: string;
   };
@@ -42,39 +42,29 @@ export interface SiteConfig {
     tags: string[];
     textBlocks: string[];
     highlight: string;
-    values: {
-      num: string;
-      title: string;
-      description: string;
-    }[];
   };
   stats: {
     value: string;
     label: string;
     suffix?: string;
   }[];
+  strengths: {
+    title: string;
+    items: {
+      num: string;
+      title: string;
+      description: string;
+    }[];
+  };
   services: {
     title: string;
     items: {
       id: string;
       number: string;
-      icon: string; // SVG path or lucide icon name (we'll stick to a preset list or simple paths)
+      icon: string;
       title: string;
       description: string;
-    }[];
-  };
-  works: {
-    title: string;
-    items: {
-      id: string;
-      number: string;
-      name: string;
-      description: string;
-      category: string;
-      year: string;
       isSoon?: boolean;
-      pipeline?: { label: string; sub: string }[];
-      content?: string;
     }[];
   };
   blog: {
@@ -100,7 +90,7 @@ export interface SiteConfig {
         message: string;
       };
       buttonText: string;
-      formActionUrl?: string; // Add this for Formspree/other services
+      formActionUrl?: string;
     };
   };
   footer: {

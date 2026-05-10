@@ -1,15 +1,15 @@
 import { useState, useRef } from "react";
 import { SiteConfig } from "./types";
-import { 
-  PenTool, 
-  Layout, 
-  Cpu, 
-  BarChart, 
-  RefreshCw, 
+import {
+  PenTool,
+  Layout,
+  Cpu,
+  BarChart,
+  RefreshCw,
   Lightbulb,
+  Stethoscope,
+  TrendingUp,
   ArrowRight,
-  Send,
-  Plus,
   X,
   User,
   CheckCircle2,
@@ -27,6 +27,8 @@ const iconMap: Record<string, any> = {
   "bar-chart": BarChart,
   "refresh-cw": RefreshCw,
   "lightbulb": Lightbulb,
+  "stethoscope": Stethoscope,
+  "trending-up": TrendingUp,
 };
 
 interface PreviewProps {
@@ -34,7 +36,7 @@ interface PreviewProps {
 }
 
 export function Preview({ config }: PreviewProps) {
-  const { theme, hero, marquee, about, stats, services, works, blog, contact, footer } = config;
+  const { theme, hero, marquee, about, stats, strengths, services, blog, contact, footer } = config;
   const [selectedArticle, setSelectedArticle] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -314,17 +316,6 @@ export function Preview({ config }: PreviewProps) {
               </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 bg-white/14 border border-white/14 mt-20 gap-px">
-            {about.values.map((v, i) => (
-              <div key={i} className="bg-navy p-9 hover:bg-navy2 transition-colors relative group overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
-                <div className="font-mono text-[10px] text-silver3 tracking-widest mb-5">{v.num}</div>
-                <div className="text-sm font-medium text-white mb-3">{v.title}</div>
-                <p className="text-[13px] text-silver leading-relaxed">{v.description}</p>
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* STATS STRIP */}
@@ -342,8 +333,26 @@ export function Preview({ config }: PreviewProps) {
           ))}
         </div>
 
+        {/* STRENGTHS */}
+        <section id="strengths" className="py-24 px-6 md:px-12 max-w-5xl mx-auto border-t border-white/10">
+          <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-accent mb-12 flex items-center gap-3 before:content-[attr(data-label)] before:opacity-70 after:flex-1 after:h-px after:bg-gradient-to-r after:from-white/10 after:to-transparent" data-label={config.labels.strengths}>
+            {config.labels.strengths}
+          </div>
+          <h2 className="font-serif text-3xl md:text-6xl text-white mb-12 tracking-tight" dangerouslySetInnerHTML={{ __html: strengths.title }} />
+          <div className="grid grid-cols-1 md:grid-cols-2 bg-white/14 border border-white/14 gap-px">
+            {strengths.items.map((s, i) => (
+              <div key={i} className="bg-navy p-8 md:p-9 hover:bg-navy2 transition-colors relative group overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                <div className="font-mono text-[10px] text-silver3 tracking-widest mb-5">{s.num}</div>
+                <div className="text-base font-medium text-white mb-3">{s.title}</div>
+                <p className="text-[13px] text-silver leading-relaxed">{s.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* SERVICES */}
-        <section id="services" className="py-24 px-6 md:px-12 max-w-5xl mx-auto">
+        <section id="services" className="py-24 px-6 md:px-12 max-w-5xl mx-auto border-t border-white/10">
           <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-accent mb-12 flex items-center gap-3 before:content-[attr(data-label)] before:opacity-70 after:flex-1 after:h-px after:bg-gradient-to-r after:from-white/10 after:to-transparent" data-label={config.labels.services}>
             {config.labels.services}
           </div>
@@ -354,62 +363,23 @@ export function Preview({ config }: PreviewProps) {
             {services.items.map((s, i) => {
               const Icon = iconMap[s.icon] || Lightbulb;
               return (
-                <div key={i} className="bg-navy p-8 md:p-9 hover:bg-navy2 transition-colors relative group overflow-hidden">
+                <div key={i} className={cn(
+                  "bg-navy p-8 md:p-9 hover:bg-navy2 transition-colors relative group overflow-hidden",
+                  s.isSoon && "opacity-50"
+                )}>
                   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-accent to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
-                  <div className="font-mono text-[10px] text-silver3 tracking-widest mb-6">{s.number}</div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="font-mono text-[10px] text-silver3 tracking-widest">{s.number}</div>
+                    {s.isSoon && (
+                      <span className="font-mono text-[9px] tracking-widest text-silver3 border border-white/20 px-2.5 py-0.5 uppercase">Coming Soon</span>
+                    )}
+                  </div>
                   <Icon className="w-5 h-5 text-accent stroke-[1.5] mb-5 opacity-90" />
                   <div className="text-sm font-medium text-white mb-3 leading-snug">{s.title}</div>
                   <p className="text-[13px] text-silver leading-relaxed">{s.description}</p>
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        {/* WORKS */}
-        <section id="works" className="py-24 px-6 md:px-12 max-w-5xl mx-auto border-t border-white/10">
-          <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-accent mb-12 flex items-center gap-3 before:content-[attr(data-label)] before:opacity-70 after:flex-1 after:h-px after:bg-gradient-to-r after:from-white/10 after:to-transparent" data-label={config.labels.works}>
-            {config.labels.works}
-          </div>
-          <h2 className="font-serif text-3xl md:text-6xl text-white mb-12 tracking-tight" dangerouslySetInnerHTML={{ __html: works.title }} />
-          
-          <div className="mt-12 group/list">
-            {works.items.map((item, i) => (
-              <div key={i} className={cn(
-                "grid grid-cols-1 md:grid-cols-[5rem_11fr_auto] gap-6 md:gap-8 py-8 border-t border-white/10 last:border-b transition-all items-start relative",
-                item.isSoon && "opacity-40 grayscale pointer-events-none"
-              )}>
-                <div className="font-serif text-5xl md:text-[3.5rem] text-accent/15 leading-none tracking-tight pt-1">
-                  {item.number}
-                </div>
-                <div className="space-y-4">
-                  <div className="text-xl md:text-base text-white font-medium flex items-center flex-wrap gap-2">
-                    {item.name}
-                    {item.isSoon && <span className="font-mono text-[9px] tracking-widest text-silver3 border border-white/20 px-2.5 py-0.5 uppercase">Coming Soon</span>}
-                  </div>
-                  <p className="text-sm md:text-[13px] text-silver leading-loose">{item.description}</p>
-                  
-                  {item.pipeline && (
-                    <div className="flex items-center gap-3 mt-6 flex-wrap">
-                      {item.pipeline.map((p, j) => (
-                        <div key={j} className="flex items-center gap-3">
-                          <div className="font-mono text-[10px] tracking-wider text-silver3 border border-white/10 px-3 py-2 leading-tight text-center bg-white/5">
-                            {p.label}<br /><span className="text-[8px] opacity-60">{p.sub}</span>
-                          </div>
-                          {j < item.pipeline!.length - 1 && <ArrowRight className="w-3 h-3 text-white/20" />}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="flex md:flex-col items-center md:items-end justify-between md:justify-start gap-2 pt-1">
-                  <span className="font-mono text-[10px] text-accent tracking-widest border border-accent/20 bg-accent/5 px-3 py-1 uppercase">
-                    {item.category}
-                  </span>
-                  <span className="font-mono text-[11px] text-silver3">{item.year}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
