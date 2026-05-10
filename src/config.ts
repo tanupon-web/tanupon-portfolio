@@ -18,19 +18,19 @@ export const siteConfig: SiteConfig = {
       { label: "About", href: "#about" },
       { label: "できること", href: "#services" },
       { label: "制作実績", href: "#works" },
-      { label: "発信", href: "#blog" },
+      { label: "執筆サンプル", href: "#blog" },
       { label: "お問い合わせ", href: "#contact" },
     ],
   },
   hero: {
-    tag: "薬剤師 × AI スペシャリスト",
-    title: "Healthcare,<br>reimagined<br><em>with AI.</em>",
+    tag: "現役薬剤師｜医療コンテンツ専門",
+    title: "薬剤師が書く、<br>信頼できる<br><em>医療コンテンツ。</em>",
     avatar: {
       url: "/profile_icon_square.png",
       name: "薬剤師たぬぽん",
       objectPosition: "center",
     },
-    subtext: "薬剤師8年の専門知識 × AI自動化で、医療コンテンツ制作をワンストップで。",
+    subtext: "薬剤師8年の専門知識で、薬機法準拠の医療コンテンツ制作をワンストップで。",
     ctas: {
       primary: { label: "お問い合わせ", href: "#contact" },
       secondary: { label: "サンプルを見る", href: "#works" },
@@ -51,11 +51,11 @@ export const siteConfig: SiteConfig = {
     about: "ABOUT",
     services: "SERVICES",
     works: "WORKS",
-    blog: "BLOG",
+    blog: "SAMPLES",
     contact: "CONTACT",
   },
   about: {
-    title: "現役薬剤師 ×<br><em>AI活用</em>",
+    title: "現役薬剤師が<br><em>責任を持って監修</em>",
     tags: ["大阪府", "調剤薬局8年", "研修認定薬剤師", "医療執筆・監修", "薬機法対応", "Web制作", "AI自動化"],
     textBlocks: [
       "はじめまして、薬剤師のたぬぽんです。大阪府内の調剤薬局で現役の薬剤師として勤務しながら、医療執筆・監修を中心に、Webデザインや業務自動化システムの構築まで幅広くご依頼を承っています。",
@@ -168,7 +168,7 @@ export const siteConfig: SiteConfig = {
     ],
   },
   blog: {
-    title: "発信",
+    title: "執筆サンプル",
     items: [
       {
         date: "2026.04.20",
@@ -262,12 +262,12 @@ export const siteConfig: SiteConfig = {
   },
   footer: {
     logo: "薬剤師たぬぽん",
-    copy: "薬剤師 × AI スペシャリスト｜大阪府",
+    copy: "現役薬剤師｜医療コンテンツ専門｜大阪府",
     links: [
       { label: "About", href: "#about" },
       { label: "できること", href: "#services" },
       { label: "制作実績", href: "#works" },
-      { label: "発信", href: "#blog" },
+      { label: "執筆サンプル", href: "#blog" },
       { label: "お問い合わせ", href: "#contact" },
     ],
     socials: [
