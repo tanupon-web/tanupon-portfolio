@@ -28,7 +28,7 @@ export const siteConfig: SiteConfig = {
   },
   hero: {
     tag: "現役薬剤師｜医療コンテンツ専門",
-    title: "薬剤師が書く、<br>信頼できる<br><em>医療コンテンツ。</em>",
+    title: "現役薬剤師による、<br>信頼性ある<br><em>医療コンテンツ制作</em>",
     avatar: {
       url: "/profile_icon_square.png",
       name: "薬剤師たぬぽん",
