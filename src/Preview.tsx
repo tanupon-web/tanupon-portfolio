@@ -492,7 +492,7 @@ export function Preview({ config }: PreviewProps) {
                 </div>
                 <div className="space-y-1.5">
                   <label className="block font-mono text-[10px] text-silver3 tracking-widest uppercase">{contact.form.placeholders.subject}</label>
-                  <input required name="subject" type="text" placeholder={contact.form.placeholders.subject} className="w-full bg-navy2 border border-white/15 text-white p-4 px-5 font-sans text-sm focus:border-accent outline-none transition-colors placeholder:text-silver3/30 rounded-none" />
+                  <input required name="_subject" type="text" placeholder={contact.form.placeholders.subject} className="w-full bg-navy2 border border-white/15 text-white p-4 px-5 font-sans text-sm focus:border-accent outline-none transition-colors placeholder:text-silver3/30 rounded-none" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="block font-mono text-[10px] text-silver3 tracking-widest uppercase">{contact.form.placeholders.message}</label>
